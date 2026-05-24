@@ -1,11 +1,13 @@
 package modelo;
 
+import util.Validador;
+
 public class Medico extends Empleado {
     private String especialidad;
     private int numeroPacientesAtendidos;
     private double valorConsulta;
 
-    public Medico(String cedula, String nombre, int edad, String telefono, String correo, double valorConsulta, int numeroPacientesAtendidos, String especialidad) {
+    public Medico(String cedula, String nombre, int edad, String telefono, String correo, double valorConsulta, int numeroPacientesAtendidos, String especialidad)throws Exception {
         super(cedula, nombre, edad, telefono, correo);
         setValorConsulta(valorConsulta);
         setNumeroPacientesAtendidos(numeroPacientesAtendidos);
@@ -31,7 +33,9 @@ public class Medico extends Empleado {
         return especialidad;
     }
 
-    public void setEspecialidad(String especialidad) {
+    public void setEspecialidad(String especialidad)throws Exception {
+        Validador.validarTexto(especialidad);
+
         this.especialidad = especialidad;
     }
 
@@ -39,7 +43,9 @@ public class Medico extends Empleado {
         return numeroPacientesAtendidos;
     }
 
-    public void setNumeroPacientesAtendidos(int numeroPacientesAtendidos) {
+    public void setNumeroPacientesAtendidos(int numeroPacientesAtendidos) throws Exception{
+        Validador.validarNumeroPositivo(numeroPacientesAtendidos);
+
         this.numeroPacientesAtendidos = numeroPacientesAtendidos;
     }
 
@@ -47,7 +53,9 @@ public class Medico extends Empleado {
         return valorConsulta;
     }
 
-    public void setValorConsulta(double valorConsulta) {
+    public void setValorConsulta(double valorConsulta) throws Exception {
+        Validador.validarNumeroPositivo(valorConsulta);
+
         this.valorConsulta = valorConsulta;
     }
 }

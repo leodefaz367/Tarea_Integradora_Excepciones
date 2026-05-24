@@ -1,11 +1,13 @@
 package modelo;
 
+import util.Validador;
+
 public class Administrativo extends Empleado {
     private String departamento;
     private int horasTrabajadas;
     private double valorHora;
 
-    public Administrativo(String cedula, String nombre, int edad, String telefono, String correo, int horasTrabajadas, String departamento, double valorHora) {
+    public Administrativo(String cedula, String nombre, int edad, String telefono, String correo, int horasTrabajadas, String departamento, double valorHora) throws Exception {
         super(cedula, nombre, edad, telefono, correo);
         setHorasTrabajadas(horasTrabajadas);
         setDepartamento(departamento);
@@ -32,7 +34,9 @@ public class Administrativo extends Empleado {
         return departamento;
     }
 
-    public void setDepartamento(String departamento) {
+    public void setDepartamento(String departamento) throws Exception{
+        Validador.validarTexto(departamento);
+
         this.departamento = departamento;
     }
 
@@ -40,7 +44,9 @@ public class Administrativo extends Empleado {
         return horasTrabajadas;
     }
 
-    public void setHorasTrabajadas(int horasTrabajadas) {
+    public void setHorasTrabajadas(int horasTrabajadas) throws Exception{
+        Validador.validarNumeroPositivo(horasTrabajadas);
+
         this.horasTrabajadas = horasTrabajadas;
     }
 
@@ -48,7 +54,9 @@ public class Administrativo extends Empleado {
         return valorHora;
     }
 
-    public void setValorHora(double valorHora) {
+    public void setValorHora(double valorHora) throws Exception{
+        Validador.validarNumeroPositivo(valorHora);
+
         this.valorHora = valorHora;
     }
 }

@@ -2,7 +2,7 @@ package util;
 
 import excepciones.DatoInvalidoException;
 
-public class validador {
+public class Validador {
     public static void validarTexto(String texto)throws DatoInvalidoException{
         if(texto == null || texto.trim().isEmpty()){
             throw new DatoInvalidoException("Campo vacio");
