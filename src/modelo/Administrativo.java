@@ -7,19 +7,25 @@ public class Administrativo extends Empleado {
 
     public Administrativo(String cedula, String nombre, int edad, String telefono, String correo, int horasTrabajadas, String departamento, double valorHora) {
         super(cedula, nombre, edad, telefono, correo);
-        this.horasTrabajadas = horasTrabajadas;
-        this.departamento = departamento;
-        this.valorHora = valorHora;
+        setHorasTrabajadas(horasTrabajadas);
+        setDepartamento(departamento);
+        setValorHora(valorHora);
     }
 
     @Override
     public double calcularPago() {
-        return 0;
+        return horasTrabajadas * valorHora;
     }
 
     @Override
     public void mostrarInformacion() {
+        super.mostrarInformacion();
 
+        System.out.println("Tipo: Administrativo");
+        System.out.println("Departamento: " + departamento);
+        System.out.println("Horas trabajadas: " + horasTrabajadas);
+        System.out.println("Valor por hora: " + valorHora);
+        System.out.println("Pago: " + calcularPago());
     }
 
     public String getDepartamento() {
