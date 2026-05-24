@@ -1,5 +1,6 @@
 package modelo;
 
+import excepciones.DatoInvalidoException;
 import util.Validador;
 
 public class Medico extends Empleado {
@@ -7,7 +8,7 @@ public class Medico extends Empleado {
     private int numeroPacientesAtendidos;
     private double valorConsulta;
 
-    public Medico(String cedula, String nombre, int edad, String telefono, String correo, double valorConsulta, int numeroPacientesAtendidos, String especialidad)throws Exception {
+    public Medico(String cedula, String nombre, int edad, String telefono, String correo, double valorConsulta, int numeroPacientesAtendidos, String especialidad)throws DatoInvalidoException {
         super(cedula, nombre, edad, telefono, correo);
         setValorConsulta(valorConsulta);
         setNumeroPacientesAtendidos(numeroPacientesAtendidos);
@@ -33,7 +34,7 @@ public class Medico extends Empleado {
         return especialidad;
     }
 
-    public void setEspecialidad(String especialidad)throws Exception {
+    public void setEspecialidad(String especialidad)throws DatoInvalidoException {
         Validador.validarTexto(especialidad);
 
         this.especialidad = especialidad;
@@ -43,7 +44,7 @@ public class Medico extends Empleado {
         return numeroPacientesAtendidos;
     }
 
-    public void setNumeroPacientesAtendidos(int numeroPacientesAtendidos) throws Exception{
+    public void setNumeroPacientesAtendidos(int numeroPacientesAtendidos) throws DatoInvalidoException{
         Validador.validarNumeroPositivo(numeroPacientesAtendidos);
 
         this.numeroPacientesAtendidos = numeroPacientesAtendidos;
@@ -53,7 +54,7 @@ public class Medico extends Empleado {
         return valorConsulta;
     }
 
-    public void setValorConsulta(double valorConsulta) throws Exception {
+    public void setValorConsulta(double valorConsulta) throws DatoInvalidoException{
         Validador.validarNumeroPositivo(valorConsulta);
 
         this.valorConsulta = valorConsulta;

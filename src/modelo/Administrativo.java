@@ -1,5 +1,6 @@
 package modelo;
 
+import excepciones.DatoInvalidoException;
 import util.Validador;
 
 public class Administrativo extends Empleado {
@@ -7,7 +8,7 @@ public class Administrativo extends Empleado {
     private int horasTrabajadas;
     private double valorHora;
 
-    public Administrativo(String cedula, String nombre, int edad, String telefono, String correo, int horasTrabajadas, String departamento, double valorHora) throws Exception {
+    public Administrativo(String cedula, String nombre, int edad, String telefono, String correo, int horasTrabajadas, String departamento, double valorHora) throws DatoInvalidoException{
         super(cedula, nombre, edad, telefono, correo);
         setHorasTrabajadas(horasTrabajadas);
         setDepartamento(departamento);
@@ -34,7 +35,7 @@ public class Administrativo extends Empleado {
         return departamento;
     }
 
-    public void setDepartamento(String departamento) throws Exception{
+    public void setDepartamento(String departamento) throws DatoInvalidoException {
         Validador.validarTexto(departamento);
 
         this.departamento = departamento;
@@ -44,7 +45,7 @@ public class Administrativo extends Empleado {
         return horasTrabajadas;
     }
 
-    public void setHorasTrabajadas(int horasTrabajadas) throws Exception{
+    public void setHorasTrabajadas(int horasTrabajadas) throws DatoInvalidoException{
         Validador.validarNumeroPositivo(horasTrabajadas);
 
         this.horasTrabajadas = horasTrabajadas;
@@ -54,7 +55,7 @@ public class Administrativo extends Empleado {
         return valorHora;
     }
 
-    public void setValorHora(double valorHora) throws Exception{
+    public void setValorHora(double valorHora) throws DatoInvalidoException{
         Validador.validarNumeroPositivo(valorHora);
 
         this.valorHora = valorHora;

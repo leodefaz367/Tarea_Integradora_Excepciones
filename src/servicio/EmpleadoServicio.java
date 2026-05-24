@@ -33,13 +33,13 @@ public class EmpleadoServicio {
         return null;
     }
 
-    public void eliminarEmpleado(String cedula){
+    public String eliminarEmpleado(String cedula){
         Empleado empleado = buscador(cedula);
         if (empleado!=null){
             empleados.remove(empleado);
-            System.out.println("Empleado eliminado");
+            return "Empleado eliminado";
         }else {
-            System.out.println("Empleado no encontrado");
+            return "Empleado no encontrado";
         }
     }
 

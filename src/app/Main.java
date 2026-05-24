@@ -1,9 +1,117 @@
 package app;
 
+import excepciones.DatoInvalidoException;
+import modelo.Administrativo;
+import modelo.Medico;
+import servicio.EmpleadoServicio;
+import util.Validador;
+
+import java.net.SocketTimeoutException;
+import java.util.*;
+
+
 public class Main {
     public static void main(String[] args) {
-        for (int i = 0; i<3; i++){
-            System.out.println("HOla");
-        }
+        Scanner sc = new Scanner(System.in);
+
+        EmpleadoServicio servicio = new EmpleadoServicio();
+
+        int opcion;
+        do {
+            System.out.println("======= MENÚ ========");
+            System.out.println("1. Registrar medico");
+            System.out.println("2. Registrar personal administrativo");
+            System.out.println("3. Mostrar empleados");
+            System.out.println("4. Buscar por cedula");
+            System.out.println("5. Eliminar empleados");
+            System.out.println("6. Mostrar estadísticas");
+            System.out.println("7. Salir");
+
+            opcion=Integer.parseInt(sc.nextLine());
+
+            try{
+                switch (opcion){
+                    case 1:
+                        System.out.println("Cedula: ");
+                        String cedulaM=sc.nextLine();
+                        System.out.println("Nombre: ");
+                        String nombreM=sc.nextLine();
+                        System.out.println("Edad: ");
+                        int edadM=Integer.parseInt(sc.nextLine());
+                        System.out.println("Telefono: ");
+                        String telefonoM = sc.nextLine();
+                        System.out.println("Correo: ");
+                        String correoM= sc.nextLine();
+                        System.out.println("Especialidad: ");
+                        String especialidad =sc.nextLine();
+                        System.out.println("Pacientes atentidos: ");
+                        int pacientesAtendidos=Integer.parseInt(sc.nextLine());
+                        System.out.println("Valor consulta: ");
+                        double valorConsulta = Double.parseDouble(sc.nextLine());
+
+                        Medico medico = new Medico(
+                                cedulaM, nombreM, edadM, telefonoM, correoM, valorConsulta,pacientesAtendidos,especialidad
+                        );
+                        servicio.registrarEmpleado(medico);
+                        break;
+                    case 2:
+                        System.out.println("Cédula: ");
+                        String cedulaA = sc.nextLine();
+                        System.out.println("Nombre: ");
+                        String nombreA = sc.nextLine();
+                        System.out.println("Edad: ");
+                        int edadA = Integer.parseInt(sc.nextLine());
+                        System.out.println("Teléfono: ");
+                        String telefonoA = sc.nextLine();
+                        System.out.println("Correo: ");
+                        String correoA = sc.nextLine();
+                        System.out.println("Departamento: ");
+                        String departamento = sc.nextLine();
+                        System.out.println("Horas Trabajadas: ");
+                        int horas=Integer.parseInt(sc.nextLine());
+                        System.out.println("Valor por hora: ");
+                        double valor = Double.parseDouble(sc.nextLine());
+
+                        Administrativo admin = new Administrativo(cedulaA, nombreA, edadA, telefonoA, correoA, horas, departamento, valor);
+
+                        servicio.registrarEmpleado(admin);
+
+                        break;
+                    case 3:
+                        servicio.mostrarEmpleados();
+                        break;
+                    case 4:
+                        System.out.println("========BUSCADOR========");
+                        System.out.println("Ingrese la cedula: ");
+                        String cedulaBuscar = sc.nextLine();
+                        if (servicio.buscador(cedulaBuscar)!=null){
+                            servicio.buscador(cedulaBuscar).mostrarInformacion();
+                        }else {
+                            System.out.println("Empleado no encontrado");
+                        }
+                        break;
+                    case 5:
+                        System.out.println("Ingrese la cedula: ");
+                        String cedulaEliminar = sc.nextLine();
+                        String resultado = servicio.eliminarEmpleado(cedulaEliminar);
+                        System.out.println(resultado);
+
+                        break;
+                    case 6:
+                        servicio.mostrarEstadisticas();;
+                        break;
+                    case 7:
+                        System.out.println("Cerrando...");
+                        break;
+                    default:
+                        System.out.println("Opcion invalida");
+                }
+            }catch(NumberFormatException e){
+                System.out.println("Error... igrese numeros dentro del rango 1-7");
+            }catch (DatoInvalidoException e){
+                System.out.println("Error... "+ e.getMessage());
+            }
+
+        }while (opcion!=7);
     }
 }

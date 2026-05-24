@@ -1,5 +1,6 @@
 package modelo;
 
+import excepciones.DatoInvalidoException;
 import util.Validador;
 
 import javax.xml.validation.Validator;
@@ -11,7 +12,7 @@ public abstract class Empleado {
     private String telefono;
     private String correo;
 
-    public Empleado(String cedula, String nombre, int edad, String telefono, String correo) throws Exception{
+    public Empleado(String cedula, String nombre, int edad, String telefono, String correo) throws DatoInvalidoException{
         setCedula(cedula);
         setNombre(nombre);
         setEdad(edad);
@@ -33,7 +34,7 @@ public abstract class Empleado {
         return cedula;
     }
 
-    public void setCedula(String cedula) throws Exception{
+    public void setCedula(String cedula) throws DatoInvalidoException {
         Validador.validarTexto(cedula);
         this.cedula = cedula;
     }
@@ -42,7 +43,7 @@ public abstract class Empleado {
         return nombre;
     }
 
-    public void setNombre(String nombre) throws Exception{
+    public void setNombre(String nombre) throws DatoInvalidoException{
         Validador.validarTexto(nombre);
         this.nombre = nombre;
     }
@@ -51,7 +52,7 @@ public abstract class Empleado {
         return edad;
     }
 
-    public void setEdad(int edad) throws Exception{
+    public void setEdad(int edad) throws DatoInvalidoException{
         Validador.validarEdad(edad);
         this.edad = edad;
     }
@@ -60,7 +61,7 @@ public abstract class Empleado {
         return telefono;
     }
 
-    public void setTelefono(String telefono) throws Exception{
+    public void setTelefono(String telefono) throws DatoInvalidoException{
         Validador.validarTexto(telefono);
 
         this.telefono = telefono;
@@ -70,7 +71,7 @@ public abstract class Empleado {
         return correo;
     }
 
-    public void setCorreo(String correo) throws Exception {
+    public void setCorreo(String correo) throws DatoInvalidoException {
         Validador.validarCorreo(correo);
 
         this.correo = correo;
