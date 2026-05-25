@@ -7,11 +7,15 @@ public class EmpleadoServicio {
 
     private ArrayList<Empleado> empleados = new ArrayList<>();
 
-    public void registrarEmpleado(Empleado empleado) {
+    public String registrarEmpleado(Empleado empleado) {
+        if(buscador(empleado.getCedula())!= null){
+            return "La cedula ya esta regstrada";
+        }
 
         empleados.add(empleado);
-        System.out.println("Empleado registrado correctamente");
+        return "Empleado registrado correctamente";
     }
+
 
     public void mostrarEmpleados(){
         if(empleados.isEmpty()){

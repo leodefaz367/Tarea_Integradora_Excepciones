@@ -52,7 +52,9 @@ public class Main {
                         Medico medico = new Medico(
                                 cedulaM, nombreM, edadM, telefonoM, correoM, valorConsulta,pacientesAtendidos,especialidad
                         );
-                        servicio.registrarEmpleado(medico);
+                        String resultadoR = servicio.registrarEmpleado(medico);
+
+                        System.out.println(resultadoR);
                         break;
                     case 2:
                         System.out.println("Cédula: ");
@@ -74,8 +76,8 @@ public class Main {
 
                         Administrativo admin = new Administrativo(cedulaA, nombreA, edadA, telefonoA, correoA, horas, departamento, valor);
 
-                        servicio.registrarEmpleado(admin);
-
+                        String resultadoRA=servicio.registrarEmpleado(admin);
+                        System.out.println(resultadoRA);
                         break;
                     case 3:
                         servicio.mostrarEmpleados();
