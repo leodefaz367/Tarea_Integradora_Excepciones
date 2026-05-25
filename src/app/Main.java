@@ -23,9 +23,10 @@ public class Main {
             System.out.println("2. Registrar personal administrativo");
             System.out.println("3. Mostrar empleados");
             System.out.println("4. Buscar por cedula");
-            System.out.println("5. Eliminar empleados");
-            System.out.println("6. Mostrar estadísticas");
-            System.out.println("7. Salir");
+            System.out.println("5. Actualizar empleado");
+            System.out.println("6. Eliminar empleados");
+            System.out.println("7. Mostrar estadísticas");
+            System.out.println("8. Salir");
 
             opcion=Integer.parseInt(sc.nextLine());
 
@@ -93,23 +94,39 @@ public class Main {
                         }
                         break;
                     case 5:
+                        System.out.println("========ACTUALIZAR========");
+                        System.out.println("Cedula del empleado:");
+                        String cedulaActualizar = sc.nextLine();
+                        System.out.println("Nuevo nombre:");
+                        String nuevoNombre = sc.nextLine();
+                        System.out.println("Nueva edad:");
+                        int nuevaEdad = Integer.parseInt(sc.nextLine());
+                        System.out.println("Nuevo telefono:");
+                        String nuevoTelefono = sc.nextLine();
+                        System.out.println("Nuevo correo:");
+                        String nuevoCorreo = sc.nextLine();
+                        System.out.println(
+                                servicio.actualizarEmpleado(cedulaActualizar, nuevoNombre, nuevaEdad, nuevoTelefono, nuevoCorreo)
+                        );
+                        break;
+                    case 6:
                         System.out.println("Ingrese la cedula: ");
                         String cedulaEliminar = sc.nextLine();
                         String resultado = servicio.eliminarEmpleado(cedulaEliminar);
                         System.out.println(resultado);
 
                         break;
-                    case 6:
+                    case 7:
                         servicio.mostrarEstadisticas();;
                         break;
-                    case 7:
+                    case 8:
                         System.out.println("Cerrando...");
                         break;
                     default:
                         System.out.println("Opcion invalida");
                 }
             }catch(NumberFormatException e){
-                System.out.println("Error... igrese numeros dentro del rango 1-7");
+                System.out.println("Error... igrese numeros validos");
             }catch (DatoInvalidoException e){
                 System.out.println("Error... "+ e.getMessage());
             }

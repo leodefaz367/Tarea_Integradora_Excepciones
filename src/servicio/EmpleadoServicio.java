@@ -2,6 +2,7 @@ package servicio;
 
 import modelo.Empleado;
 import java.util.ArrayList;
+import excepciones.DatoInvalidoException;
 
 public class EmpleadoServicio {
 
@@ -35,6 +36,19 @@ public class EmpleadoServicio {
             }
         }
         return null;
+    }
+
+    public String actualizarEmpleado(String cedula, String nombre, int edad, String telefono, String correo) throws DatoInvalidoException {
+        Empleado empleado = buscador(cedula);
+        if (empleado == null){
+            return "Empleado no encontrado";
+        }
+        empleado.setNombre(nombre);
+        empleado.setEdad(edad);
+        empleado.setTelefono(telefono);
+        empleado.setCorreo(correo);
+
+        return "Empleado actualizado correctamente";
     }
 
     public String eliminarEmpleado(String cedula){
